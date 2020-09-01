@@ -85,7 +85,11 @@ function setStats(data){
     setDownloadLinksAndInfo();
 }
 
+// download counts were reset due to repository movement. Adjusting the old values.
+var downloadCounts = [668, 251, 3126];
+
 function getAssetData(asset) {
+    asset.download_count += downloadCounts.pop();
     totalDownloadCount += asset.download_count;
     var assetData = {
         url: asset.browser_download_url,
