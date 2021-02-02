@@ -32,7 +32,7 @@
     <Zip_Postal_Code>ZIP</Zip_Postal_Code>
     <Address_1>Aneejian</Address_1>
     <Address_2></Address_2>
-    <Company_WebSite_URL>http://www.aneejian.com</Company_WebSite_URL>
+    <Company_WebSite_URL>https://www.aneejian.com</Company_WebSite_URL>
     <Contact_Info>
       <Contact_First_Name>Aneejian</Contact_First_Name>
       <Contact_Last_Name>Aneejian</Contact_Last_Name>
@@ -104,7 +104,7 @@ Bug fixes.</Program_Change_Info>
   <Web_Info>
     <Application_URLs>
       <Application_Info_URL>https://www.aneejian.com/2018/04/change-case-excel-add-in.html</Application_Info_URL>
-      <Application_Order_URL>http://github.aneejian.com/Change-Case-Excel-Add-In</Application_Order_URL>
+      <Application_Order_URL>https://github.aneejian.com/Change-Case-Excel-Add-In</Application_Order_URL>
       <Application_Screenshot_URL>https://cdn.rawgit.com/aneejian/Change-Case-Excel-Add-In/master/docs/images/screenshot.png</Application_Screenshot_URL>
       <Application_Icon_URL>https://cdn.rawgit.com/aneejian/Change-Case-Excel-Add-In/master/docs/images/icon32.png</Application_Icon_URL>
       <Application_XML_File_URL>http://repository.appvisor.com/app-9200313d132d/site-01/Change_Case_Excel_Add-In_pad.xml</Application_XML_File_URL>
@@ -230,7 +230,7 @@ Copyright (c) 2018 Aneejian</EULA>
     <Site_VERSION></Site_VERSION>
     <Site_DESCRIPTION></Site_DESCRIPTION>
     <Site_Site_Title>Aneejian</Site_Site_Title>
-    <Site_Site_URL>http://www.aneejian.com</Site_Site_URL>
+    <Site_Site_URL>https://www.aneejian.com</Site_Site_URL>
     <Site_Keywords></Site_Keywords>
     <Site_Description_100></Site_Description_100>
     <Site_Description_250></Site_Description_250>
