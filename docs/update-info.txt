@@ -1,2 +1,2 @@
-v3.0.0
+v3.0.1
 https://github.com/aneejian/Change-Case-Excel-Add-In/releases/download/v3.0/change_case_excel_addin.exe
