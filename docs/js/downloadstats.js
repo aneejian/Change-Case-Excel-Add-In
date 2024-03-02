@@ -1,41 +1,41 @@
 var apiRoot = "https://api.github.com/";
-var latestReleaseUrl = "https://api.github.com/repos/aneejian/Change-Case-Excel-Add-In/releases/latest";
-var releaseUrl = 'https://github.com/aneejian/Change-Case-Excel-Add-In/releases/download/v3.0/';
-var fileName = 'change_case_excel_addin';
+var latestReleaseUrl =
+  "https://api.github.com/repos/aneejian/Change-Case-Excel-Add-In/releases/latest";
+var releaseUrl =
+  "https://github.com/aneejian/Change-Case-Excel-Add-In/releases/download/v3.0/";
+var fileName = "change_case_excel_addin";
 var fileTypes = {
-    exe: releaseUrl + fileName + '.exe',
-    zip: releaseUrl + fileName + '.zip',
-    rar: releaseUrl + fileName + '.rar'
+  exe: releaseUrl + fileName + ".exe",
+  zip: releaseUrl + fileName + ".zip",
+  rar: releaseUrl + fileName + ".rar",
 };
 
 var totalDownloadCount = 0;
 var exeData = {
-    url: fileTypes.exe,
-    downloads: 50,
-    size: '961 KB',
-    name: fileName + '.exe'
+  url: fileTypes.exe,
+  downloads: 50,
+  size: "961 KB",
+  name: fileName + ".exe",
 };
 
 var zipData = {
-    url: fileTypes.zip,
-    downloads: 50,
-    size: '905 KB',
-    name: fileName + '.zip'
+  url: fileTypes.zip,
+  downloads: 50,
+  size: "905 KB",
+  name: fileName + ".zip",
 };
 var rarData = {
-    url: fileTypes.rar,
-    downloads: 50,
-    size: '853 KB',
-    name: fileName + '.rar'
+  url: fileTypes.rar,
+  downloads: 50,
+  size: "853 KB",
+  name: fileName + ".rar",
 };
 
 // setAssetData();
 
 $(window).ready(function () {
-    getStats();    
+  getStats();
 });
-
-
 
 // var settings = {
 //     "async": true,
@@ -49,9 +49,6 @@ $(window).ready(function () {
 //     assets.forEach(getAssetData);
 //     setAssetData();
 // });
-
-
-
 
 // $('#exe').click(function (e) {
 //     e.preventDefault();
@@ -68,63 +65,63 @@ $(window).ready(function () {
 //     window.location.href = rarData.url;
 // });
 
-
 // Callback function for getting release stats
 function getStats() {
-    var user = 'aneejian';
-    var repository = 'Change-Case-Excel-Add-In';
-    var url = apiRoot + "repos/" + user + "/" + repository + "/releases/latest";
-    $.getJSON(url, setStats).fail(setDownloadLinksAndInfo);
+  var user = "aneejian";
+  var repository = "Change-Case-Excel-Add-In";
+  var url = apiRoot + "repos/" + user + "/" + repository + "/releases/latest";
+  $.getJSON(url, setStats).fail(setDownloadLinksAndInfo);
 }
 
-function setStats(data){
-    var releaseAssets = data.assets;
-    $.each(releaseAssets, function (index, item) {
-        getAssetData(item);
-    });
-    setDownloadLinksAndInfo();
+function setStats(data) {
+  var releaseAssets = data.assets;
+  $.each(releaseAssets, function (index, item) {
+    getAssetData(item);
+  });
+  setDownloadLinksAndInfo();
 }
 
 // download counts were reset due to repository movement. Adjusting the old values.
-var downloadCounts = [668, 251, 3126];
+// var downloadCounts = [668, 251, 3126];
+var downloadCounts = [0, 0, 0];
 
 function getAssetData(asset) {
-    asset.download_count += downloadCounts.pop();
-    totalDownloadCount += asset.download_count;
-    var assetData = {
-        url: asset.browser_download_url,
-        downloads: asset.download_count,
-        size: Math.round(asset.size / 1024) + ' KB',
-        name: asset.name
-    };
-    var extension = assetData.name.split('.').pop();
-    switch (extension) {
-        case 'exe':
-            exeData = assetData;
-            break;
-        case 'zip':
-            zipData = assetData;
-            break;
-        case 'rar':
-            rarData = assetData;
-            break;
-        default:
-            break;
-    }
+  asset.download_count += downloadCounts.pop();
+  totalDownloadCount += asset.download_count;
+  var assetData = {
+    url: asset.browser_download_url,
+    downloads: asset.download_count,
+    size: Math.round(asset.size / 1024) + " KB",
+    name: asset.name,
+  };
+  var extension = assetData.name.split(".").pop();
+  switch (extension) {
+    case "exe":
+      exeData = assetData;
+      break;
+    case "zip":
+      zipData = assetData;
+      break;
+    case "rar":
+      rarData = assetData;
+      break;
+    default:
+      break;
+  }
 }
 
 function setDownloadLinksAndInfo() {
-    $('#totalDownloads').text(totalDownloadCount);
+  $("#totalDownloads").text(totalDownloadCount);
 
-    $('#exeName').text(exeData.name);
-    $('#exeDownloads').text(exeData.downloads);
-    $('#exe').attr('onclick', "window.location.href='" + exeData.url + "'");
+  $("#exeName").text(exeData.name);
+  $("#exeDownloads").text(exeData.downloads);
+  $("#exe").attr("onclick", "window.location.href='" + exeData.url + "'");
 
-    $('#zipName').text(zipData.name);
-    $('#zipDownloads').text(zipData.downloads);
-    $('#zip').attr('onclick', "window.location.href='" + zipData.url + "'");
+  $("#zipName").text(zipData.name);
+  $("#zipDownloads").text(zipData.downloads);
+  $("#zip").attr("onclick", "window.location.href='" + zipData.url + "'");
 
-    $('#rarName').text(rarData.name);
-    $('#rarDownloads').text(rarData.downloads);
-    $('#rar').attr('onclick', "window.location.href='" + rarData.url + "'");
+  $("#rarName").text(rarData.name);
+  $("#rarDownloads").text(rarData.downloads);
+  $("#rar").attr("onclick", "window.location.href='" + rarData.url + "'");
 }
