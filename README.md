@@ -1,6 +1,6 @@
 # Change Case Excel Add-In
 
-[![Total Downloads](https://img.shields.io/github/downloads/aneejian/Change-Case-Excel-Add-In/total.svg?style=for-the-badge)](https://aneejian.com/powerpoint-downsizer-add-in/#download) [![Latest Release](https://img.shields.io/github/release/aneejian/Change-Case-Excel-Add-In.svg?style=for-the-badge)](https://github.com/aneejian/Change-Case-Excel-Add-In/releases/latest)
+[![Total Downloads](https://img.shields.io/github/downloads/aneejian/Change-Case-Excel-Add-In/total.svg?style=for-the-badge)](https://github.aneejian.com/Change-Case-Excel-Add-In/#download) [![Latest Release](https://img.shields.io/github/release/aneejian/Change-Case-Excel-Add-In.svg?style=for-the-badge)](https://github.com/aneejian/Change-Case-Excel-Add-In/releases/latest)
 
 Change Case Excel Add-In is a simple tool that can help you in changing case of the selected cells in Excel.
 
@@ -10,7 +10,7 @@ Change Case Excel Add-In is a simple tool that can help you in changing case of 
 
 ## Installing the Add-In
 
-#### [Download the latest release](https://github.aneejian.com/Change-Case-Excel-Add-In/#download)
+### [Download the latest release](https://github.aneejian.com/Change-Case-Excel-Add-In/#download)
 
 #### Installing Add-In from EXE file
 
