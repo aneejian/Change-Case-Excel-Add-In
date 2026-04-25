@@ -470,6 +470,15 @@ footer p { color: var(--text-muted); font-size: 0.85rem; }
 }
 
 /* ══════════════════════════════════
+   STAT LOADING SPINNER
+   ══════════════════════════════════ */
+.stat-loader {
+    font-size: 0.5em;
+    opacity: 0.5;
+    vertical-align: middle;
+}
+
+/* ══════════════════════════════════
    RESPONSIVE
    ══════════════════════════════════ */
 @media (max-width: 900px) {
