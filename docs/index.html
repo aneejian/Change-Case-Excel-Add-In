@@ -10,7 +10,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Kaushan+Script&display=swap" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"></script>
 
     <link rel="stylesheet" href="css/custom.css">
@@ -22,7 +22,7 @@
 
     <!-- ── NAV ── -->
     <nav class="topbar">
-        <a href="#" class="logo"><img src="images/logotext.svg" alt="Aneejian"></a>
+        <a href="https://aneejian.com" class="logo" target="_blank" style="font-family:'Kaushan Script',cursive;font-size:1.4rem;color:var(--emerald);">Aneejian</a>
         <button class="hamburger" onclick="document.querySelector('.topbar-links').classList.toggle('open')"><i class="fas fa-bars"></i></button>
         <ul class="topbar-links">
             <li><a href="#playground">Try it</a></li>
@@ -30,6 +30,7 @@
             <li><a href="#overview">Overview</a></li>
             <li><a href="#demo">Demo</a></li>
             <li><a href="#download">Download</a></li>
+            <li><a href="#share"><i class="fas fa-share-alt"></i> Share</a></li>
             <li><a href="https://github.com/aneejian/Change-Case-Excel-Add-In" target="_blank"><i class="fab fa-github"></i></a></li>
             <li><a href="https://www.buymeacoffee.com/aneejian" target="_blank" class="topbar-cta"><i class="fas fa-coffee"></i> Support</a></li>
         </ul>
@@ -170,9 +171,31 @@
         <div class="inner">
             <h2>See it in action</h2>
             <p class="sub">A quick walkthrough of the add-in working inside Excel.</p>
-            <div class="video-embed">
-                <iframe src="https://www.youtube-nocookie.com/embed/KmaOW4PhuII?rel=0" title="Change Case Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="video-embed" id="videoContainer">
+                <img src="https://img.youtube.com/vi/KmaOW4PhuII/maxresdefault.jpg" alt="Watch demo video" class="video-thumb" id="videoThumb">
+                <button class="video-play-btn" id="videoPlayBtn" aria-label="Play video">
+                    <svg width="68" height="48" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#FF0000"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
+                </button>
             </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         SHARE
+         ══════════════════════════════════ -->
+    <section class="share-section reveal" id="share">
+        <div class="inner">
+            <h2>Spread the word</h2>
+            <p class="sub">Know someone who works with Excel? Share this add-in with them.</p>
+            <div class="share-buttons">
+                <button class="share-btn share-native" id="shareNative" style="display:none;"><i class="fas fa-share-alt"></i> Share</button>
+                <a class="share-btn share-x" id="shareX" href="#" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> Twitter / X</a>
+                <a class="share-btn share-linkedin" id="shareLinkedin" href="#" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a class="share-btn share-facebook" id="shareFacebook" href="#" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> Facebook</a>
+                <a class="share-btn share-reddit" id="shareReddit" href="#" target="_blank" rel="noopener"><i class="fab fa-reddit"></i> Reddit</a>
+                <button class="share-btn share-copy" id="shareCopy"><i class="fas fa-link"></i> Copy Link</button>
+            </div>
+            <div class="copy-toast" id="copyToast">Link copied to clipboard!</div>
         </div>
     </section>
 
@@ -441,6 +464,49 @@
                 $('#distRarPct').text(rarPct + '%');
             }
         });
+    // ─── Video click-to-play (avoids Error 153 from local file://) ───
+    document.getElementById('videoPlayBtn').addEventListener('click', function() {
+        const container = document.getElementById('videoContainer');
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/KmaOW4PhuII?autoplay=1&rel=0';
+        iframe.title = 'Change Case Demo';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+        container.innerHTML = '';
+        container.appendChild(iframe);
+    });
+
+    // ─── Share feature ───
+    const shareUrl = 'https://aneejian.com/change-case-excel-add-in/';
+    const shareTitle = 'Change Case Excel Add-In';
+    const shareText = 'A free Excel VSTO Add-In that transforms text case with keyboard shortcuts and context menus. Check it out!';
+
+    // Native Web Share API (mobile / supported browsers)
+    if (navigator.share) {
+        const nativeBtn = document.getElementById('shareNative');
+        nativeBtn.style.display = 'inline-flex';
+        nativeBtn.addEventListener('click', () => {
+            navigator.share({ title: shareTitle, text: shareText, url: shareUrl }).catch(() => {});
+        });
+    }
+
+    // Social share links
+    const encodedUrl = encodeURIComponent(shareUrl);
+    const encodedText = encodeURIComponent(shareText + ' ' + shareUrl);
+    document.getElementById('shareX').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodedUrl;
+    document.getElementById('shareLinkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodedUrl;
+    document.getElementById('shareFacebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl;
+    document.getElementById('shareReddit').href = 'https://www.reddit.com/submit?url=' + encodedUrl + '&title=' + encodeURIComponent(shareTitle);
+
+    // Copy link
+    document.getElementById('shareCopy').addEventListener('click', () => {
+        navigator.clipboard.writeText(shareUrl).then(() => {
+            const toast = document.getElementById('copyToast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        });
+    });
     });
     </script>
 
