@@ -1,127 +1,111 @@
-var apiRoot = "https://api.github.com/";
-var latestReleaseUrl =
-  "https://api.github.com/repos/aneejian/Change-Case-Excel-Add-In/releases/latest";
-var releaseUrl =
-  "https://github.com/aneejian/Change-Case-Excel-Add-In/releases/download/v3.0/";
-var fileName = "change_case_excel_addin";
-var fileTypes = {
-  exe: releaseUrl + fileName + ".exe",
-  zip: releaseUrl + fileName + ".zip",
-  rar: releaseUrl + fileName + ".rar",
-};
+/**
+ * Download Statistics Module
+ * Fetches release data from GitHub API and populates download stats in the DOM.
+ * 
+ * Required DOM element IDs:
+ *   #totalDownloads, #metricExe, #metricZip, #metricRar
+ *   #exeName, #exeDownloads, #exe (button)
+ *   #zipName, #zipDownloads, #zip (button)
+ *   #rarName, #rarDownloads, #rar (button)
+ *   #distExe, #distZip, #distRar (distribution bar segments)
+ *   #distExePct, #distZipPct, #distRarPct (percentage labels)
+ */
+(function () {
+  "use strict";
 
-var totalDownloadCount = 0;
-var exeData = {
-  url: fileTypes.exe,
-  downloads: 50,
-  size: "961 KB",
-  name: fileName + ".exe",
-};
+  var API_URL = "https://api.github.com/repos/aneejian/Change-Case-Excel-Add-In/releases";
+  var RELEASE_BASE = "https://github.com/aneejian/Change-Case-Excel-Add-In/releases/download/v3.0/";
+  var FILE_NAME = "change_case_excel_addin";
 
-var zipData = {
-  url: fileTypes.zip,
-  downloads: 50,
-  size: "905 KB",
-  name: fileName + ".zip",
-};
-var rarData = {
-  url: fileTypes.rar,
-  downloads: 50,
-  size: "853 KB",
-  name: fileName + ".rar",
-};
-
-// setAssetData();
-
-$(window).ready(function () {
-  getStats();
-});
-
-// var settings = {
-//     "async": true,
-//     "crossDomain": true,
-//     "url": "https://api.github.com/repos/aneejian/Change-Case-Excel-Add-In/releases/latest",
-//     "method": "GET",
-// };
-
-// $.ajax(settings).done(function (response) {
-//     var assets = response.assets;
-//     assets.forEach(getAssetData);
-//     setAssetData();
-// });
-
-// $('#exe').click(function (e) {
-//     e.preventDefault();
-//     window.location.href = exeData.url;
-// });
-
-// $('#zip').click(function (e) {
-//     e.preventDefault();
-//     window.location.href = zipData.url;
-// });
-
-// $('#rar').click(function (e) {
-//     e.preventDefault();
-//     window.location.href = rarData.url;
-// });
-
-// Callback function for getting release stats
-function getStats() {
-  var user = "aneejian";
-  var repository = "Change-Case-Excel-Add-In";
-  var url = apiRoot + "repos/" + user + "/" + repository + "/releases/latest";
-  $.getJSON(url, setStats).fail(setDownloadLinksAndInfo);
-}
-
-function setStats(data) {
-  var releaseAssets = data.assets;
-  $.each(releaseAssets, function (index, item) {
-    getAssetData(item);
-  });
-  setDownloadLinksAndInfo();
-}
-
-// download counts were reset due to repository movement. Adjusting the old values.
-// var downloadCounts = [668, 251, 3126];
-var downloadCounts = [0, 0, 0];
-
-function getAssetData(asset) {
-  asset.download_count += downloadCounts.pop();
-  totalDownloadCount += asset.download_count;
-  var assetData = {
-    url: asset.browser_download_url,
-    downloads: asset.download_count,
-    size: Math.round(asset.size / 1024) + " KB",
-    name: asset.name,
+  // Fallback data used when API is unavailable (e.g. rate-limited)
+  var fallbackData = {
+    exe: { url: RELEASE_BASE + FILE_NAME + ".exe", downloads: 0, name: FILE_NAME + ".exe" },
+    zip: { url: RELEASE_BASE + FILE_NAME + ".zip", downloads: 0, name: FILE_NAME + ".zip" },
+    rar: { url: RELEASE_BASE + FILE_NAME + ".rar", downloads: 0, name: FILE_NAME + ".rar" }
   };
-  var extension = assetData.name.split(".").pop();
-  switch (extension) {
-    case "exe":
-      exeData = assetData;
-      break;
-    case "zip":
-      zipData = assetData;
-      break;
-    case "rar":
-      rarData = assetData;
-      break;
-    default:
-      break;
+
+  $(function () {
+    fetchReleaseData();
+  });
+
+  function fetchReleaseData() {
+    $.getJSON(API_URL)
+      .done(function (releases) {
+        var stats = { total: 0, exe: null, zip: null, rar: null };
+
+        // Process all releases and their assets
+        $.each(releases, function (_, release) {
+          $.each(release.assets || [], function (_, asset) {
+            var ext = asset.name.split(".").pop().toLowerCase();
+            var assetInfo = {
+              url: asset.browser_download_url,
+              downloads: asset.download_count,
+              name: asset.name
+            };
+
+            stats.total += asset.download_count;
+
+            // Keep the latest (first encountered) asset for each extension
+            if (ext === "exe" && !stats.exe) { stats.exe = assetInfo; }
+            else if (ext === "zip" && !stats.zip) { stats.zip = assetInfo; }
+            else if (ext === "rar" && !stats.rar) { stats.rar = assetInfo; }
+          });
+        });
+
+        // Use fallback for any missing assets
+        if (!stats.exe) { stats.exe = fallbackData.exe; }
+        if (!stats.zip) { stats.zip = fallbackData.zip; }
+        if (!stats.rar) { stats.rar = fallbackData.rar; }
+
+        updateDOM(stats);
+      })
+      .fail(function () {
+        // API failed — use fallback data
+        updateDOM({
+          total: 0,
+          exe: fallbackData.exe,
+          zip: fallbackData.zip,
+          rar: fallbackData.rar
+        });
+      });
   }
-}
 
-function setDownloadLinksAndInfo() {
-  $("#totalDownloads").text(totalDownloadCount);
+  function updateDOM(stats) {
+    // Total downloads
+    $("#totalDownloads").text(stats.total.toLocaleString());
 
-  $("#exeName").text(exeData.name);
-  $("#exeDownloads").text(exeData.downloads);
-  $("#exe").attr("onclick", "window.location.href='" + exeData.url + "'");
+    // Per-format details
+    setFileCard("exe", stats.exe);
+    setFileCard("zip", stats.zip);
+    setFileCard("rar", stats.rar);
 
-  $("#zipName").text(zipData.name);
-  $("#zipDownloads").text(zipData.downloads);
-  $("#zip").attr("onclick", "window.location.href='" + zipData.url + "'");
+    // Metric cards
+    $("#metricExe").text(stats.exe.downloads.toLocaleString());
+    $("#metricZip").text(stats.zip.downloads.toLocaleString());
+    $("#metricRar").text(stats.rar.downloads.toLocaleString());
 
-  $("#rarName").text(rarData.name);
-  $("#rarDownloads").text(rarData.downloads);
-  $("#rar").attr("onclick", "window.location.href='" + rarData.url + "'");
-}
+    // Distribution bar
+    if (stats.total > 0) {
+      var exePct = ((stats.exe.downloads / stats.total) * 100).toFixed(1);
+      var zipPct = ((stats.zip.downloads / stats.total) * 100).toFixed(1);
+      var rarPct = ((stats.rar.downloads / stats.total) * 100).toFixed(1);
+
+      setTimeout(function () {
+        $("#distExe").css("width", exePct + "%");
+        $("#distZip").css("width", zipPct + "%");
+        $("#distRar").css("width", rarPct + "%");
+      }, 400);
+
+      $("#distExePct").text(exePct + "%");
+      $("#distZipPct").text(zipPct + "%");
+      $("#distRarPct").text(rarPct + "%");
+    }
+  }
+
+  function setFileCard(ext, data) {
+    $("#" + ext + "Name").text(data.name);
+    $("#" + ext + "Downloads").text(data.downloads.toLocaleString());
+    $("#" + ext).attr("onclick", "window.location.href='" + data.url + "'");
+  }
+
+})();

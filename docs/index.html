@@ -404,50 +404,7 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // ─── Enhanced download stats + repo info ───
-    // After downloadstats.js populates the basic data, we enrich the dashboard
-    $(window).on('load', function() {
 
-
-        // Fetch all releases for richer stats
-        $.getJSON('https://api.github.com/repos/aneejian/Change-Case-Excel-Add-In/releases', function(releases) {
-            let total = 0, exeTotal = 0, zipTotal = 0, rarTotal = 0;
-            let latestDate = '';
-
-            releases.forEach(function(release) {
-                if (!latestDate && release.published_at) latestDate = release.published_at;
-                release.assets.forEach(function(asset) {
-                    total += asset.download_count;
-                    const ext = asset.name.split('.').pop().toLowerCase();
-                    if (ext === 'exe') exeTotal += asset.download_count;
-                    else if (ext === 'zip') zipTotal += asset.download_count;
-                    else if (ext === 'rar') rarTotal += asset.download_count;
-                });
-            });
-
-            // Update metric cards
-            $('#metricExe').text(exeTotal.toLocaleString());
-            $('#metricZip').text(zipTotal.toLocaleString());
-            $('#metricRar').text(rarTotal.toLocaleString());
-
-
-            // Distribution bar
-            if (total > 0) {
-                const exePct = ((exeTotal / total) * 100).toFixed(1);
-                const zipPct = ((zipTotal / total) * 100).toFixed(1);
-                const rarPct = ((rarTotal / total) * 100).toFixed(1);
-
-                setTimeout(() => {
-                    $('#distExe').css('width', exePct + '%');
-                    $('#distZip').css('width', zipPct + '%');
-                    $('#distRar').css('width', rarPct + '%');
-                }, 300);
-
-                $('#distExePct').text(exePct + '%');
-                $('#distZipPct').text(zipPct + '%');
-                $('#distRarPct').text(rarPct + '%');
-            }
-        });
     // ─── Video click-to-play (avoids Error 153 from local file://) ───
     document.getElementById('videoPlayBtn').addEventListener('click', function() {
         const container = document.getElementById('videoContainer');
@@ -477,7 +434,6 @@
 
     // Social share links
     const encodedUrl = encodeURIComponent(shareUrl);
-    const encodedText = encodeURIComponent(shareText + ' ' + shareUrl);
     document.getElementById('shareX').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodedUrl;
     document.getElementById('shareLinkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodedUrl;
     document.getElementById('shareFacebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl;
@@ -490,7 +446,6 @@
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2500);
         });
-    });
     });
     </script>
 
