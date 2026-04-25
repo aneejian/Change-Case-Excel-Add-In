@@ -303,13 +303,7 @@
                 </div>
             </div>
 
-            <!-- Repo Stats -->
-            <div class="repo-stats">
-                <div class="repo-stat"><i class="fas fa-star" style="color:var(--amber)"></i> <strong id="repoStars">—</strong> Stars</div>
-                <div class="repo-stat"><i class="fas fa-code-branch" style="color:var(--violet)"></i> <strong id="repoForks">—</strong> Forks</div>
-                <div class="repo-stat"><i class="fas fa-eye" style="color:var(--sky)"></i> <strong id="repoWatchers">—</strong> Watchers</div>
-                <div class="repo-stat"><i class="fas fa-calendar-alt" style="color:var(--emerald)"></i> Release <strong id="releaseDate">—</strong></div>
-            </div>
+
         </div>
     </section>
 
@@ -413,12 +407,7 @@
     // ─── Enhanced download stats + repo info ───
     // After downloadstats.js populates the basic data, we enrich the dashboard
     $(window).on('load', function() {
-        // Fetch repo info for stars/forks/watchers
-        $.getJSON('https://api.github.com/repos/aneejian/Change-Case-Excel-Add-In', function(repo) {
-            $('#repoStars').text(repo.stargazers_count.toLocaleString());
-            $('#repoForks').text(repo.forks_count.toLocaleString());
-            $('#repoWatchers').text(repo.subscribers_count.toLocaleString());
-        });
+
 
         // Fetch all releases for richer stats
         $.getJSON('https://api.github.com/repos/aneejian/Change-Case-Excel-Add-In/releases', function(releases) {
@@ -441,11 +430,6 @@
             $('#metricZip').text(zipTotal.toLocaleString());
             $('#metricRar').text(rarTotal.toLocaleString());
 
-            // Release date
-            if (latestDate) {
-                const d = new Date(latestDate);
-                $('#releaseDate').text(d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }));
-            }
 
             // Distribution bar
             if (total > 0) {
