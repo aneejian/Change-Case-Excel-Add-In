@@ -1,3 +1,5 @@
+![Info Graphic][info_graphic]
+
 # Change Case Excel Add-In
 
 [![Total Downloads](https://img.shields.io/github/downloads/aneejian/Change-Case-Excel-Add-In/total.svg?style=for-the-badge)](https://github.aneejian.com/Change-Case-Excel-Add-In/#download) [![Latest Release](https://img.shields.io/github/release/aneejian/Change-Case-Excel-Add-In.svg?style=for-the-badge)](https://github.com/aneejian/Change-Case-Excel-Add-In/releases/latest)
@@ -83,6 +85,7 @@ Use the settings menu to customize Keyboard Shortcuts or disable it completely.
 + Find 'Change Case Excel Add-In' from the list which has publisher as 'Aneejian'.
 + Click uninstall.
 
+[info_graphic]: docs/images/ccea-infographic.png "Info Graphic"
 [context_menu]: docs/images/context_menu-min.png "Context Menu"
 [home_tab]: docs/images/home_tab-min.png "Change Case Option in Home Tab of Excel Ribbon"
 [tab]: docs/images/tab-min.png "Change Case Tab in Excel Ribbon"
