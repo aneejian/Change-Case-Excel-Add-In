@@ -1,321 +1,531 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Change Case Excel Add-In — Transform text instantly | Aneejian</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A free, open-source Excel VSTO Add-In that transforms text case with keyboard shortcuts and context menus. 20,000+ downloads.">
-    <link href="https://aneejian.com/favicon.ico" rel="icon" type="image/x-icon">
-    <meta property="og:image" content="images/ogimage.png">
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      Change Case Excel Add-In — Transform text instantly | Aneejian
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A free, open-source Excel VSTO Add-In that transforms text case with keyboard shortcuts and context menus. 20,000+ downloads." />
+    <link
+      href="https://aneejian.com/favicon.ico"
+      rel="icon"
+      type="image/x-icon" />
+    <meta property="og:image" content="images/ogimage.png" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Kaushan+Script&display=swap" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Kaushan+Script&display=swap"
+      rel="stylesheet" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"></script>
 
-    <link rel="stylesheet" href="css/custom.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="css/custom.css" />
+  </head>
+  <body>
     <!-- Preloader -->
     <div class="preloader"><span class="loader-text">loading_</span></div>
 
     <!-- ── NAV ── -->
     <nav class="topbar">
-        <a href="https://aneejian.com" class="logo" target="_blank" style="font-family:'Kaushan Script',cursive;font-size:1.4rem;color:var(--emerald);">Aneejian</a>
-        <button class="hamburger" onclick="document.querySelector('.topbar-links').classList.toggle('open')"><i class="fas fa-bars"></i></button>
-        <ul class="topbar-links">
-            <li><a href="#playground">Try it</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#overview">Overview</a></li>
-            <li><a href="#demo">Demo</a></li>
-            <li><a href="#download">Download</a></li>
-            <li><a href="#share"><i class="fas fa-share-alt"></i> Share</a></li>
-            <li><a href="https://github.com/aneejian/Change-Case-Excel-Add-In" target="_blank"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://www.buymeacoffee.com/aneejian" target="_blank" class="topbar-cta"><i class="fas fa-coffee"></i> Support</a></li>
-        </ul>
+      <a
+        href="https://aneejian.com"
+        class="logo"
+        target="_blank"
+        style="
+          font-family: &quot;Kaushan Script&quot;, cursive;
+          font-size: 1.4rem;
+          color: var(--emerald);
+        "
+        >Aneejian</a
+      >
+      <button
+        class="hamburger"
+        onclick="
+          document.querySelector('.topbar-links').classList.toggle('open')
+        ">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="topbar-links">
+        <li><a href="#playground">Try it</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#download">Download</a></li>
+        <li>
+          <a href="#share"><i class="fas fa-share-alt"></i> Share</a>
+        </li>
+        <li>
+          <a
+            href="https://github.com/aneejian/Change-Case-Excel-Add-In"
+            target="_blank"
+            ><i class="fab fa-github"></i
+          ></a>
+        </li>
+        <li>
+          <a
+            href="https://www.buymeacoffee.com/aneejian"
+            target="_blank"
+            class="topbar-cta"
+            ><i class="fas fa-coffee"></i> Support</a
+          >
+        </li>
+      </ul>
     </nav>
 
     <!-- ══════════════════════════════════
          HERO — THE TRANSFORMER
          ══════════════════════════════════ -->
     <section class="hero" id="home">
-        <div class="hero-label"><span class="dot"></span> Free &amp; Open Source</div>
-        <h1>Change <span class="morph-word" id="morphWord">CASE</span><br>in Excel.</h1>
-        <p class="hero-sub">Native VSTO add-in. Right-click context menu. Custom keyboard shortcuts. Zero friction.</p>
-        <div class="hero-ctas">
-            <a href="#download" class="cta cta-primary"><i class="fas fa-download"></i> Download Free</a>
-            <a href="#playground" class="cta cta-secondary"><i class="fas fa-terminal"></i> Try it live</a>
-        </div>
+      <div class="hero-label">
+        <span class="dot"></span> Free &amp; Open Source
+      </div>
+      <h1>
+        Change <span class="morph-word" id="morphWord">CASE</span><br />in
+        Excel.
+      </h1>
+      <p class="hero-sub">
+        Native VSTO add-in. Right-click context menu. Custom keyboard shortcuts.
+        Zero friction.
+      </p>
+      <div class="hero-ctas">
+        <a href="#download" class="cta cta-primary"
+          ><i class="fas fa-download"></i> Download Free</a
+        >
+        <a href="#playground" class="cta cta-secondary"
+          ><i class="fas fa-terminal"></i> Try it live</a
+        >
+      </div>
     </section>
 
     <!-- ══════════════════════════════════
          LIVE PLAYGROUND
          ══════════════════════════════════ -->
     <section class="playground reveal" id="playground">
-        <div class="inner">
-            <h2>Try it right here</h2>
-            <p class="sub">Type anything below and watch every transformation instantly.</p>
+      <div class="inner">
+        <h2>Try it right here</h2>
+        <p class="sub">
+          Type anything below and watch every transformation instantly.
+        </p>
 
-            <div class="play-box">
-                <div class="play-input-area">
-                    <label>Input</label>
-                    <textarea id="playInput" rows="2" placeholder="Type something — e.g. hello world from excel"></textarea>
-                </div>
-                <div class="play-outputs">
-                    <div class="play-output case-upper">
-                        <div class="case-label">UPPER CASE</div>
-                        <div class="case-result" id="outUpper"></div>
-                    </div>
-                    <div class="play-output case-lower">
-                        <div class="case-label">lower case</div>
-                        <div class="case-result" id="outLower"></div>
-                    </div>
-                    <div class="play-output case-sentence">
-                        <div class="case-label">Sentence case</div>
-                        <div class="case-result" id="outSentence"></div>
-                    </div>
-                    <div class="play-output case-title">
-                        <div class="case-label">Title Case</div>
-                        <div class="case-result" id="outTitle"></div>
-                    </div>
-                    <div class="play-output case-toggle">
-                        <div class="case-label">tOGGLE cASE</div>
-                        <div class="case-result" id="outToggle"></div>
-                    </div>
-                    <div class="play-output case-alt">
-                        <div class="case-label">aLtErNaTiNg</div>
-                        <div class="case-result" id="outAlt"></div>
-                    </div>
-                </div>
+        <div class="play-box">
+          <div class="play-input-area">
+            <label>Input</label>
+            <textarea
+              id="playInput"
+              rows="2"
+              placeholder="Type something — e.g. hello world from excel"></textarea>
+          </div>
+          <div class="play-outputs">
+            <div class="play-output case-upper">
+              <div class="case-label">UPPER CASE</div>
+              <div class="case-result" id="outUpper"></div>
             </div>
+            <div class="play-output case-lower">
+              <div class="case-label">lower case</div>
+              <div class="case-result" id="outLower"></div>
+            </div>
+            <div class="play-output case-sentence">
+              <div class="case-label">Sentence case</div>
+              <div class="case-result" id="outSentence"></div>
+            </div>
+            <div class="play-output case-title">
+              <div class="case-label">Title Case</div>
+              <div class="case-result" id="outTitle"></div>
+            </div>
+            <div class="play-output case-toggle">
+              <div class="case-label">tOGGLE cASE</div>
+              <div class="case-result" id="outToggle"></div>
+            </div>
+            <div class="play-output case-alt">
+              <div class="case-label">aLtErNaTiNg</div>
+              <div class="case-result" id="outAlt"></div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- ══════════════════════════════════
          FEATURES MOSAIC
          ══════════════════════════════════ -->
     <section class="mosaic-section reveal" id="features">
-        <div class="inner">
-            <div class="mosaic-header">
-                <h2>Built different.</h2>
-                <p>Every feature is designed around how you actually work in Excel.</p>
-            </div>
-
-            <div class="mosaic">
-                <!-- Context Menu — Wide tile with screenshot -->
-                <div class="tile tile-wide">
-                    <img src="images/context_menu-min.png" alt="Context Menu" class="tile-img">
-                    <div class="tile-content">
-                        <div class="tile-icon" style="background:var(--emerald-dim);color:var(--emerald);"><i class="fas fa-mouse-pointer"></i></div>
-                        <h3>Right-click context menu</h3>
-                        <p>Select cells, right-click, change case. No dialogs, no formulas. Place it first or last in the menu.</p>
-                    </div>
-                </div>
-
-                <!-- Shortcuts — Narrow tile -->
-                <div class="tile tile-narrow">
-                    <div class="tile-icon" style="background:var(--violet-dim);color:var(--violet);"><i class="fas fa-keyboard"></i></div>
-                    <h3>Global shortcuts</h3>
-                    <p>Map Ctrl+Shift+Key combos to any conversion. Enable or disable individually.</p>
-                </div>
-
-                <!-- Ribbon — Wide tile with screenshot -->
-                <div class="tile tile-narrow">
-                    <div class="tile-icon" style="background:var(--sky-dim);color:var(--sky);"><i class="fas fa-columns"></i></div>
-                    <h3>Ribbon tab</h3>
-                    <p>Dedicated Change Case tab plus integration into the Home tab.</p>
-                </div>
-
-                <div class="tile tile-wide">
-                    <img src="images/settings-min.png" alt="Settings" class="tile-img">
-                    <div class="tile-content">
-                        <div class="tile-icon" style="background:var(--amber-dim);color:var(--amber);"><i class="fas fa-sliders-h"></i></div>
-                        <h3>Full control settings</h3>
-                        <p>Configure every shortcut key, toggle visibility, decide context menu position — all from one clean panel.</p>
-                    </div>
-                </div>
-
-                <!-- 6 conversions -->
-                <div class="tile tile-half">
-                    <div class="tile-icon" style="background:var(--emerald-dim);color:var(--emerald);"><i class="fas fa-font"></i></div>
-                    <h3>6 case conversions</h3>
-                    <p>UPPER, lower, Sentence, Title, tOGGLE, and aLtErNaTiNg case — covering every real-world need.</p>
-                </div>
-
-                <!-- Lightweight -->
-                <div class="tile tile-half">
-                    <div class="tile-icon" style="background:var(--violet-dim);color:var(--violet);"><i class="fas fa-feather-alt"></i></div>
-                    <h3>Lightweight &amp; secure</h3>
-                    <p>Under 1MB installer. No telemetry, no network calls, no ads. Just a clean native add-in.</p>
-                </div>
-            </div>
+      <div class="inner">
+        <div class="mosaic-header">
+          <h2>Built different.</h2>
+          <p>
+            Every feature is designed around how you actually work in Excel.
+          </p>
         </div>
+
+        <div class="mosaic">
+          <!-- Context Menu — Wide tile with screenshot -->
+          <div class="tile tile-wide">
+            <img
+              src="images/context_menu-min.png"
+              alt="Context Menu"
+              class="tile-img" />
+            <div class="tile-content">
+              <div
+                class="tile-icon"
+                style="background: var(--emerald-dim); color: var(--emerald)">
+                <i class="fas fa-mouse-pointer"></i>
+              </div>
+              <h3>Right-click context menu</h3>
+              <p>
+                Select cells, right-click, change case. No dialogs, no formulas.
+                Place it first or last in the menu.
+              </p>
+            </div>
+          </div>
+
+          <!-- Shortcuts — Narrow tile -->
+          <div class="tile tile-narrow">
+            <div
+              class="tile-icon"
+              style="background: var(--violet-dim); color: var(--violet)">
+              <i class="fas fa-keyboard"></i>
+            </div>
+            <h3>Global shortcuts</h3>
+            <p>
+              Map Ctrl+Shift+Key combos to any conversion. Enable or disable
+              individually.
+            </p>
+          </div>
+
+          <!-- Ribbon — Wide tile with screenshot -->
+          <div class="tile tile-narrow">
+            <div
+              class="tile-icon"
+              style="background: var(--sky-dim); color: var(--sky)">
+              <i class="fas fa-columns"></i>
+            </div>
+            <h3>Ribbon tab</h3>
+            <p>Dedicated Change Case tab plus integration into the Home tab.</p>
+          </div>
+
+          <div class="tile tile-wide">
+            <img
+              src="images/settings-min.png"
+              alt="Settings"
+              class="tile-img" />
+            <div class="tile-content">
+              <div
+                class="tile-icon"
+                style="background: var(--amber-dim); color: var(--amber)">
+                <i class="fas fa-sliders-h"></i>
+              </div>
+              <h3>Full control settings</h3>
+              <p>
+                Configure every shortcut key, toggle visibility, decide context
+                menu position — all from one clean panel.
+              </p>
+            </div>
+          </div>
+
+          <!-- 6 conversions -->
+          <div class="tile tile-half">
+            <div
+              class="tile-icon"
+              style="background: var(--emerald-dim); color: var(--emerald)">
+              <i class="fas fa-font"></i>
+            </div>
+            <h3>6 case conversions</h3>
+            <p>
+              UPPER, lower, Sentence, Title, tOGGLE, and aLtErNaTiNg case —
+              covering every real-world need.
+            </p>
+          </div>
+
+          <!-- Lightweight -->
+          <div class="tile tile-half">
+            <div
+              class="tile-icon"
+              style="background: var(--violet-dim); color: var(--violet)">
+              <i class="fas fa-feather-alt"></i>
+            </div>
+            <h3>Lightweight &amp; secure</h3>
+            <p>
+              Under 1MB installer. No telemetry, no network calls, no ads. Just
+              a clean native add-in.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ══════════════════════════════════
          INFOGRAPHIC
          ══════════════════════════════════ -->
     <section class="infographic-band reveal" id="overview">
-        <div class="inner">
-            <h2>The complete picture</h2>
-            <p class="sub">Everything the add-in offers, visualized.</p>
-            <img src="images/ccea-infographic.png" alt="Change Case Excel Add-In Infographic">
-        </div>
+      <div class="inner">
+        <h2>The complete picture</h2>
+        <p class="sub">Everything the add-in offers, visualized.</p>
+        <img
+          src="images/ccea-infographic.png"
+          alt="Change Case Excel Add-In Infographic" />
+      </div>
     </section>
 
     <!-- ══════════════════════════════════
          DEMO VIDEO
          ══════════════════════════════════ -->
     <section class="video-section reveal" id="demo">
-        <div class="inner">
-            <h2>See it in action</h2>
-            <p class="sub">A quick walkthrough of the add-in working inside Excel.</p>
-            <div class="video-embed" id="videoContainer">
-                <img src="https://img.youtube.com/vi/KmaOW4PhuII/maxresdefault.jpg" alt="Watch demo video" class="video-thumb" id="videoThumb">
-                <button class="video-play-btn" id="videoPlayBtn" aria-label="Play video">
-                    <svg width="68" height="48" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#FF0000"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
-                </button>
-            </div>
+      <div class="inner">
+        <h2>See it in action</h2>
+        <p class="sub">
+          A quick walkthrough of the add-in working inside Excel.
+        </p>
+        <div class="video-embed" id="videoContainer">
+          <img
+            src="https://img.youtube.com/vi/KmaOW4PhuII/maxresdefault.jpg"
+            alt="Watch demo video"
+            class="video-thumb"
+            id="videoThumb" />
+          <button
+            class="video-play-btn"
+            id="videoPlayBtn"
+            aria-label="Play video">
+            <svg width="68" height="48" viewBox="0 0 68 48">
+              <path
+                d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"
+                fill="#FF0000" />
+              <path d="M45 24L27 14v20" fill="#fff" />
+            </svg>
+          </button>
         </div>
+      </div>
     </section>
 
     <!-- ══════════════════════════════════
          SHARE
          ══════════════════════════════════ -->
     <section class="share-section reveal" id="share">
-        <div class="inner">
-            <h2>Spread the word</h2>
-            <p class="sub">Know someone who works with Excel? Share this add-in with them.</p>
-            <div class="share-buttons">
-                <button class="share-btn share-native" id="shareNative" style="display:none;"><i class="fas fa-share-alt"></i> Share</button>
-                <a class="share-btn share-x" id="shareX" href="#" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> Twitter / X</a>
-                <a class="share-btn share-linkedin" id="shareLinkedin" href="#" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a class="share-btn share-facebook" id="shareFacebook" href="#" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> Facebook</a>
-                <a class="share-btn share-reddit" id="shareReddit" href="#" target="_blank" rel="noopener"><i class="fab fa-reddit"></i> Reddit</a>
-                <button class="share-btn share-copy" id="shareCopy"><i class="fas fa-link"></i> Copy Link</button>
-            </div>
-            <div class="copy-toast" id="copyToast">Link copied to clipboard!</div>
+      <div class="inner">
+        <h2>Spread the word</h2>
+        <p class="sub">
+          Know someone who works with Excel? Share this add-in with them.
+        </p>
+        <div class="share-buttons">
+          <button
+            class="share-btn share-native"
+            id="shareNative"
+            style="display: none">
+            <i class="fas fa-share-alt"></i> Share
+          </button>
+          <a
+            class="share-btn share-x"
+            id="shareX"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            ><i class="fab fa-twitter"></i> Twitter / X</a
+          >
+          <a
+            class="share-btn share-linkedin"
+            id="shareLinkedin"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            ><i class="fab fa-linkedin"></i> LinkedIn</a
+          >
+          <a
+            class="share-btn share-facebook"
+            id="shareFacebook"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            ><i class="fab fa-facebook"></i> Facebook</a
+          >
+          <a
+            class="share-btn share-reddit"
+            id="shareReddit"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            ><i class="fab fa-reddit"></i> Reddit</a
+          >
+          <button class="share-btn share-copy" id="shareCopy">
+            <i class="fas fa-link"></i> Copy Link
+          </button>
         </div>
+        <div class="copy-toast" id="copyToast">Link copied to clipboard!</div>
+      </div>
     </section>
 
     <!-- ══════════════════════════════════
          DOWNLOAD DASHBOARD
          ══════════════════════════════════ -->
     <section class="download-dash reveal" id="download">
-        <div class="inner">
-            <div class="dash-header">
-                <div>
-                    <h2>Download</h2>
-                    <p class="sub">Free, open-source, and always will be.</p>
-                </div>
-            </div>
-
-            <!-- Metric Cards -->
-            <div class="metrics-row">
-                <div class="metric-card">
-                    <div class="metric-value green" id="totalDownloads">— <i class="fas fa-spinner fa-spin stat-loader"></i></div>
-                    <div class="metric-label">Total Downloads</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value violet" id="metricExe">— <i class="fas fa-spinner fa-spin stat-loader"></i></div>
-                    <div class="metric-label">EXE Downloads</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value sky" id="metricZip">— <i class="fas fa-spinner fa-spin stat-loader"></i></div>
-                    <div class="metric-label">ZIP Downloads</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value amber" id="metricRar">— <i class="fas fa-spinner fa-spin stat-loader"></i></div>
-                    <div class="metric-label">RAR Downloads</div>
-                </div>
-            </div>
-
-            <!-- Distribution Bar -->
-            <div class="dist-bar-wrap">
-                <div class="dist-label">Download distribution</div>
-                <div class="dist-bar">
-                    <div class="dist-seg exe" id="distExe" style="width:0%"></div>
-                    <div class="dist-seg zip" id="distZip" style="width:0%"></div>
-                    <div class="dist-seg rar" id="distRar" style="width:0%"></div>
-                </div>
-                <div class="dist-legend">
-                    <span><span class="swatch" style="background:var(--emerald)"></span> EXE (<span id="distExePct">—</span>)</span>
-                    <span><span class="swatch" style="background:var(--sky)"></span> ZIP (<span id="distZipPct">—</span>)</span>
-                    <span><span class="swatch" style="background:var(--amber)"></span> RAR (<span id="distRarPct">—</span>)</span>
-                </div>
-            </div>
-
-            <!-- Download Cards -->
-            <div class="dl-list">
-                <!-- EXE -->
-                <div class="dl-file featured">
-                    <div class="dl-file-left">
-                        <div class="dl-file-icon"><i class="fab fa-windows"></i></div>
-                        <div class="dl-file-meta">
-                            <h4>Windows Installer <span class="tag">Recommended</span></h4>
-                            <p><span id="exeName">Loading… <i class="fas fa-spinner fa-spin stat-loader"></i></span> · <span id="exeType">Self-Extractor</span></p>
-                        </div>
-                    </div>
-                    <div class="dl-file-right">
-                        <div class="dl-file-stat">
-                            <div class="num" id="exeDownloads">— <i class="fas fa-spinner fa-spin stat-loader"></i></div>
-                            <div class="lbl">downloads</div>
-                        </div>
-                        <button id="exe" class="dl-btn"><i class="fas fa-download"></i> Download</button>
-                    </div>
-                </div>
-
-                <!-- ZIP -->
-                <div class="dl-file">
-                    <div class="dl-file-left">
-                        <div class="dl-file-icon"><i class="fas fa-file-archive"></i></div>
-                        <div class="dl-file-meta">
-                            <h4>ZIP Archive</h4>
-                            <p><span id="zipName">Loading… <i class="fas fa-spinner fa-spin stat-loader"></i></span> · <span id="zipType">Portable</span></p>
-                        </div>
-                    </div>
-                    <div class="dl-file-right">
-                        <div class="dl-file-stat">
-                            <div class="num" id="zipDownloads">— <i class="fas fa-spinner fa-spin stat-loader"></i></div>
-                            <div class="lbl">downloads</div>
-                        </div>
-                        <button id="zip" class="dl-btn"><i class="fas fa-download"></i> Download</button>
-                    </div>
-                </div>
-
-                <!-- RAR -->
-                <div class="dl-file">
-                    <div class="dl-file-left">
-                        <div class="dl-file-icon"><i class="fas fa-file-archive"></i></div>
-                        <div class="dl-file-meta">
-                            <h4>RAR Archive</h4>
-                            <p><span id="rarName">Loading… <i class="fas fa-spinner fa-spin stat-loader"></i></span> · <span id="rarType">Portable</span></p>
-                        </div>
-                    </div>
-                    <div class="dl-file-right">
-                        <div class="dl-file-stat">
-                            <div class="num" id="rarDownloads">— <i class="fas fa-spinner fa-spin stat-loader"></i></div>
-                            <div class="lbl">downloads</div>
-                        </div>
-                        <button id="rar" class="dl-btn"><i class="fas fa-download"></i> Download</button>
-                    </div>
-                </div>
-            </div>
-
-
+      <div class="inner">
+        <div class="dash-header">
+          <div>
+            <h2>Download</h2>
+            <p class="sub">Free, open-source, and always will be.</p>
+          </div>
         </div>
+
+        <!-- Metric Cards -->
+        <div class="metrics-row">
+          <div class="metric-card">
+            <div class="metric-value green" id="totalDownloads">
+              — <i class="fas fa-spinner fa-spin stat-loader"></i>
+            </div>
+            <div class="metric-label">Total Downloads</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value violet" id="metricExe">
+              — <i class="fas fa-spinner fa-spin stat-loader"></i>
+            </div>
+            <div class="metric-label">EXE Downloads</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value sky" id="metricZip">
+              — <i class="fas fa-spinner fa-spin stat-loader"></i>
+            </div>
+            <div class="metric-label">ZIP Downloads</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value amber" id="metricRar">
+              — <i class="fas fa-spinner fa-spin stat-loader"></i>
+            </div>
+            <div class="metric-label">RAR Downloads</div>
+          </div>
+        </div>
+
+        <!-- Distribution Bar -->
+        <div class="dist-bar-wrap">
+          <div class="dist-label">Download distribution</div>
+          <div class="dist-bar">
+            <div class="dist-seg exe" id="distExe" style="width: 0%"></div>
+            <div class="dist-seg zip" id="distZip" style="width: 0%"></div>
+            <div class="dist-seg rar" id="distRar" style="width: 0%"></div>
+          </div>
+          <div class="dist-legend">
+            <span
+              ><span class="swatch" style="background: var(--emerald)"></span>
+              EXE (<span id="distExePct">—</span>)</span
+            >
+            <span
+              ><span class="swatch" style="background: var(--sky)"></span> ZIP
+              (<span id="distZipPct">—</span>)</span
+            >
+            <span
+              ><span class="swatch" style="background: var(--amber)"></span> RAR
+              (<span id="distRarPct">—</span>)</span
+            >
+          </div>
+        </div>
+
+        <!-- Download Cards -->
+        <div class="dl-list">
+          <!-- EXE -->
+          <div class="dl-file featured">
+            <div class="dl-file-left">
+              <div class="dl-file-icon"><i class="fab fa-windows"></i></div>
+              <div class="dl-file-meta">
+                <h4>Windows Installer <span class="tag">Recommended</span></h4>
+                <p>
+                  <span id="exeName"
+                    >Loading… <i class="fas fa-spinner fa-spin stat-loader"></i
+                  ></span>
+                  · <span id="exeType">Self-Extractor</span>
+                </p>
+              </div>
+            </div>
+            <div class="dl-file-right">
+              <div class="dl-file-stat">
+                <div class="num" id="exeDownloads">
+                  — <i class="fas fa-spinner fa-spin stat-loader"></i>
+                </div>
+                <div class="lbl">downloads</div>
+              </div>
+              <button id="exe" class="dl-btn">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+          </div>
+
+          <!-- ZIP -->
+          <div class="dl-file">
+            <div class="dl-file-left">
+              <div class="dl-file-icon">
+                <i class="fas fa-file-archive"></i>
+              </div>
+              <div class="dl-file-meta">
+                <h4>ZIP Archive</h4>
+                <p>
+                  <span id="zipName"
+                    >Loading… <i class="fas fa-spinner fa-spin stat-loader"></i
+                  ></span>
+                  · <span id="zipType">Portable</span>
+                </p>
+              </div>
+            </div>
+            <div class="dl-file-right">
+              <div class="dl-file-stat">
+                <div class="num" id="zipDownloads">
+                  — <i class="fas fa-spinner fa-spin stat-loader"></i>
+                </div>
+                <div class="lbl">downloads</div>
+              </div>
+              <button id="zip" class="dl-btn">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+          </div>
+
+          <!-- RAR -->
+          <div class="dl-file">
+            <div class="dl-file-left">
+              <div class="dl-file-icon">
+                <i class="fas fa-file-archive"></i>
+              </div>
+              <div class="dl-file-meta">
+                <h4>RAR Archive</h4>
+                <p>
+                  <span id="rarName"
+                    >Loading… <i class="fas fa-spinner fa-spin stat-loader"></i
+                  ></span>
+                  · <span id="rarType">Portable</span>
+                </p>
+              </div>
+            </div>
+            <div class="dl-file-right">
+              <div class="dl-file-stat">
+                <div class="num" id="rarDownloads">
+                  — <i class="fas fa-spinner fa-spin stat-loader"></i>
+                </div>
+                <div class="lbl">downloads</div>
+              </div>
+              <button id="rar" class="dl-btn">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ── FOOTER ── -->
     <footer>
-        <div class="inner">
-            <p>&copy; 2024 Aneejian. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="https://github.com/aneejian/Change-Case-Excel-Add-In" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                <a href="https://www.buymeacoffee.com/aneejian" target="_blank"><i class="fas fa-coffee"></i> Buy me a coffee</a>
-            </div>
+      <div class="inner">
+        <p>&copy; 2024 Aneejian. All rights reserved.</p>
+        <div class="footer-links">
+          <a
+            href="https://github.com/aneejian/Change-Case-Excel-Add-In"
+            target="_blank"
+            ><i class="fab fa-github"></i> GitHub</a
+          >
+          <a href="https://www.buymeacoffee.com/aneejian" target="_blank"
+            ><i class="fas fa-coffee"></i> Buy me a coffee</a
+          >
         </div>
+      </div>
     </footer>
 
     <!-- ══════════════════════════════════
@@ -325,134 +535,182 @@
     <script src="js/downloadstats.js"></script>
 
     <script>
-    // ─── Preloader ───
-    window.addEventListener('load', () => {
-        const p = document.querySelector('.preloader');
-        p.style.opacity = '0';
-        setTimeout(() => p.style.display = 'none', 500);
-    });
-    setTimeout(() => {
-        const p = document.querySelector('.preloader');
-        if (p) { p.style.opacity = '0'; setTimeout(() => p.style.display = 'none', 500); }
-    }, 4000);
+      // ─── Preloader ───
+      window.addEventListener("load", () => {
+        const p = document.querySelector(".preloader");
+        p.style.opacity = "0";
+        setTimeout(() => (p.style.display = "none"), 500);
+      });
+      setTimeout(() => {
+        const p = document.querySelector(".preloader");
+        if (p) {
+          p.style.opacity = "0";
+          setTimeout(() => (p.style.display = "none"), 500);
+        }
+      }, 4000);
 
-    // ─── Smooth scroll ───
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-            e.preventDefault();
-            const t = document.querySelector(a.getAttribute('href'));
-            if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            document.querySelector('.topbar-links')?.classList.remove('open');
+      // ─── Smooth scroll ───
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
+          document.querySelector(".topbar-links")?.classList.remove("open");
         });
-    });
+      });
 
-    // ─── Hero morphing word ───
-    const cases = ['CASE', 'case', 'Case', 'cASE', 'CaSe'];
-    let ci = 0;
-    const morphEl = document.getElementById('morphWord');
-    setInterval(() => {
+      // ─── Hero morphing word ───
+      const cases = ["CASE", "case", "Case", "cASE", "CaSe"];
+      let ci = 0;
+      const morphEl = document.getElementById("morphWord");
+      setInterval(() => {
         ci = (ci + 1) % cases.length;
-        morphEl.style.opacity = '0';
-        morphEl.style.transform = 'translateY(-8px)';
+        morphEl.style.opacity = "0";
+        morphEl.style.transform = "translateY(-8px)";
         setTimeout(() => {
-            morphEl.textContent = cases[ci];
-            morphEl.style.opacity = '1';
-            morphEl.style.transform = 'translateY(0)';
+          morphEl.textContent = cases[ci];
+          morphEl.style.opacity = "1";
+          morphEl.style.transform = "translateY(0)";
         }, 200);
-    }, 2000);
-    morphEl.style.transition = 'opacity 0.2s, transform 0.2s';
+      }, 2000);
+      morphEl.style.transition = "opacity 0.2s, transform 0.2s";
 
-    // ─── Live playground ───
-    const playInput = document.getElementById('playInput');
-    playInput.addEventListener('input', () => transform(playInput.value));
+      // ─── Live playground ───
+      const playInput = document.getElementById("playInput");
+      playInput.addEventListener("input", () => transform(playInput.value));
 
-    function transform(t) {
-        document.getElementById('outUpper').textContent = t.toUpperCase();
-        document.getElementById('outLower').textContent = t.toLowerCase();
-        document.getElementById('outSentence').textContent = toSentence(t);
-        document.getElementById('outTitle').textContent = toTitle(t);
-        document.getElementById('outToggle').textContent = toToggle(t);
-        document.getElementById('outAlt').textContent = toAlternating(t);
-    }
+      function transform(t) {
+        document.getElementById("outUpper").textContent = t.toUpperCase();
+        document.getElementById("outLower").textContent = t.toLowerCase();
+        document.getElementById("outSentence").textContent = toSentence(t);
+        document.getElementById("outTitle").textContent = toTitle(t);
+        document.getElementById("outToggle").textContent = toToggle(t);
+        document.getElementById("outAlt").textContent = toAlternating(t);
+      }
 
-    function toSentence(s) {
-        return s.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
-    }
-    function toTitle(s) {
-        return s.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
-    }
-    function toToggle(s) {
-        return [...s].map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join('');
-    }
-    function toAlternating(s) {
+      function toSentence(s) {
+        return s
+          .toLowerCase()
+          .replace(/(^\s*\w|[.!?]\s*\w)/g, (c) => c.toUpperCase());
+      }
+      function toTitle(s) {
+        return s.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+      }
+      function toToggle(s) {
+        return [...s]
+          .map((c) =>
+            c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase(),
+          )
+          .join("");
+      }
+      function toAlternating(s) {
         let i = 0;
-        return [...s].map(c => {
+        return [...s]
+          .map((c) => {
             if (/[a-zA-Z]/.test(c)) {
-                return i++ % 2 === 0 ? c.toLowerCase() : c.toUpperCase();
+              return i++ % 2 === 0 ? c.toLowerCase() : c.toUpperCase();
             }
             return c;
-        }).join('');
-    }
+          })
+          .join("");
+      }
 
-    // Trigger initial
-    transform('hello world from excel');
-    playInput.value = 'hello world from excel';
+      // Trigger initial
+      transform("hello world from excel");
+      playInput.value = "hello world from excel";
 
-    // ─── Scroll reveal ───
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      // ─── Scroll reveal ───
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.08 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
 
-
-    // ─── Video click-to-play (avoids Error 153 from local file://) ───
-    document.getElementById('videoPlayBtn').addEventListener('click', function() {
-        const container = document.getElementById('videoContainer');
-        const iframe = document.createElement('iframe');
-        iframe.src = 'https://www.youtube.com/embed/KmaOW4PhuII?autoplay=1&rel=0';
-        iframe.title = 'Change Case Demo';
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        iframe.allowFullscreen = true;
-        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
-        container.innerHTML = '';
-        container.appendChild(iframe);
-    });
-
-    // ─── Share feature ───
-    const shareUrl = 'https://aneejian.com/change-case-excel-add-in/';
-    const shareTitle = 'Change Case Excel Add-In';
-    const shareText = 'A free Excel VSTO Add-In that transforms text case with keyboard shortcuts and context menus. Check it out!';
-
-    // Native Web Share API (mobile / supported browsers)
-    if (navigator.share) {
-        const nativeBtn = document.getElementById('shareNative');
-        nativeBtn.style.display = 'inline-flex';
-        nativeBtn.addEventListener('click', () => {
-            navigator.share({ title: shareTitle, text: shareText, url: shareUrl }).catch(() => {});
+      // ─── Video click-to-play (avoids Error 153 from local file://) ───
+      document
+        .getElementById("videoPlayBtn")
+        .addEventListener("click", function () {
+          const container = document.getElementById("videoContainer");
+          const iframe = document.createElement("iframe");
+          iframe.src =
+            "https://www.youtube.com/embed/KmaOW4PhuII?autoplay=1&rel=0";
+          iframe.title = "Change Case Demo";
+          iframe.allow =
+            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+          iframe.allowFullscreen = true;
+          iframe.style.cssText =
+            "position:absolute;top:0;left:0;width:100%;height:100%;border:none;";
+          container.innerHTML = "";
+          container.appendChild(iframe);
         });
-    }
 
-    // Social share links
-    const encodedUrl = encodeURIComponent(shareUrl);
-    document.getElementById('shareX').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodedUrl;
-    document.getElementById('shareLinkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodedUrl;
-    document.getElementById('shareFacebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl;
-    document.getElementById('shareReddit').href = 'https://www.reddit.com/submit?url=' + encodedUrl + '&title=' + encodeURIComponent(shareTitle);
+      // ─── Share feature ───
+      const shareUrl = "https://aneejian.com/change-case-excel-add-in/";
+      const shareTitle = "Change Case Excel Add-In";
+      const shareText =
+        "A free Excel VSTO Add-In that transforms text case with keyboard shortcuts and context menus. Check it out!";
 
-    // Copy link
-    document.getElementById('shareCopy').addEventListener('click', () => {
+      // Native Web Share API (mobile / supported browsers)
+      if (navigator.share) {
+        const nativeBtn = document.getElementById("shareNative");
+        nativeBtn.style.display = "inline-flex";
+        nativeBtn.addEventListener("click", () => {
+          navigator
+            .share({ title: shareTitle, text: shareText, url: shareUrl })
+            .catch(() => {});
+        });
+      }
+
+      // Social share links
+      const encodedUrl = encodeURIComponent(shareUrl);
+      document.getElementById("shareX").href =
+        "https://twitter.com/intent/tweet?text=" +
+        encodeURIComponent(shareText) +
+        "&url=" +
+        encodedUrl;
+      document.getElementById("shareLinkedin").href =
+        "https://www.linkedin.com/sharing/share-offsite/?url=" + encodedUrl;
+      document.getElementById("shareFacebook").href =
+        "https://www.facebook.com/sharer/sharer.php?u=" + encodedUrl;
+      document.getElementById("shareReddit").href =
+        "https://www.reddit.com/submit?url=" +
+        encodedUrl +
+        "&title=" +
+        encodeURIComponent(shareTitle);
+
+      // Copy link
+      document.getElementById("shareCopy").addEventListener("click", () => {
         navigator.clipboard.writeText(shareUrl).then(() => {
-            const toast = document.getElementById('copyToast');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2500);
+          const toast = document.getElementById("copyToast");
+          toast.classList.add("show");
+          setTimeout(() => toast.classList.remove("show"), 2500);
         });
-    });
+      });
     </script>
 
+    // ads
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4083103140539495"
+      crossorigin="anonymous"></script>
+
     <!-- Buy me a coffee widget -->
-    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
-        data-id="aneejian" data-description="Support me on Buy me a coffee!"
-        data-message="Thank you for visiting. Hope you liked the add-in. If it helped, consider buying me a coffee."
-        data-color="#FF5F5F" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
-</body>
+    <script
+      data-name="BMC-Widget"
+      data-cfasync="false"
+      src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+      data-id="aneejian"
+      data-description="Support me on Buy me a coffee!"
+      data-message="Thank you for visiting. Hope you liked the add-in. If it helped, consider buying me a coffee."
+      data-color="#FF5F5F"
+      data-position="Right"
+      data-x_margin="18"
+      data-y_margin="18"></script>
+  </body>
 </html>
